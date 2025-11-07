@@ -10,8 +10,8 @@ Supports:
 ```bash
 g++ -std=c++17 -O2 -fopenmp main.cpp SparseMatrix.cpp -o sparse_test
 
-./SparseMatrixMul <size> <sparsity>
+./sparse_test <size> <sparsity>
 
 Example:
-./SparseMatrixMul 512 0.8
+./sparse_test 512 0.8
 ```
