@@ -15,12 +15,31 @@ vector<vector<int>> generateSparseMatrix(int N, double sparsity) {
 }
 
 int main(int argc, char* argv[]) {
+    // Argument validation
+    if (argc < 3) {
+        cout << "Usage: " << argv[0] << " <matrix_size> <sparsity> [seed]" << endl;
+        cout << "Example: " << argv[0] << " 1024 0.9 42" << endl;
+        cout << "\nParameters:" << endl;
+        cout << "  matrix_size : Dimension N for NxN matrices (e.g., 512, 1024, 2048)" << endl;
+        cout << "  sparsity    : Fraction of zeros, range 0.0-1.0 (0.9 = 90% sparse)" << endl;
+        cout << "  seed        : Random seed for reproducibility (default: 2025)" << endl;
+        return 1;
+    }
 
-    srand(2025);
     int N = stoi(argv[1]);
     double sparsity = stod(argv[2]);
+    int seed = (argc >= 4) ? stoi(argv[3]) : 2025;
 
+    // Input validation
+    if (sparsity < 0.0 || sparsity >= 1.0) {
+        cout << "Error: sparsity must be in range [0.0, 1.0)" << endl;
+        cout << "Example: 0.9 means 90% zeros (10% nonzeros)" << endl;
+        return 1;
+    }
 
+    srand(seed);
+    
+    cout << "Random seed: " << seed << endl;
     cout << "Matrix size: " << N << "x" << N << endl;
     cout << "Sparsity: " << sparsity * 100 << "%\n";
 
